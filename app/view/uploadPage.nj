@@ -8,6 +8,14 @@
   </head>
   <body>
     <button id="uppyModalOpener">Open Modal</button>
+    <ul>
+    {% for item in list %}
+    <li>
+      {{ item.name }}:
+      <a href="/public/{{item.name}}">{{item.name}}</a>
+    </li>
+    {% endfor %}
+    </ul>
     <script src="https://transloadit.edgly.net/releases/uppy/v0.25.2/dist/uppy.min.js"></script>
     <script>
       const uppy = Uppy.Core({debug: true, autoProceed: false})

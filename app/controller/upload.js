@@ -15,6 +15,23 @@ const writeFile = (fileStream, writeStream) => new Promise(resolve => {
   });
 });
 
+const readList = (path) => new Promise(resolve => {
+  const fileList = [];
+  fs.readdir(path, (err, dirList) => {
+    if (err) {
+      resolve(fileList);
+    } else {
+      dirList.forEach(item => {
+        fileList.push({
+          name: item,
+          path: `${path}/${item}`,
+        });
+      });
+      resolve(fileList);
+    }
+  })
+});
+
 class UploadController extends Controller {
   async upload() {
     const fileInformationArr = [];
@@ -57,7 +74,10 @@ class UploadController extends Controller {
 
   async uploadPage() {
     const ctx = this.ctx;
-    await ctx.render('uploadPage.nj');
+    const list = await readList(path.join(__dirname, `../public`));
+    await ctx.render('uploadPage.nj', {
+      list,
+    });
   }
 };
 
