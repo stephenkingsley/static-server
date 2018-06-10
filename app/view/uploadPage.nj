@@ -20,7 +20,7 @@
     <script>
       const uppy = Uppy.Core({debug: true, autoProceed: false})
         .use(Uppy.Dashboard, { trigger: '#uppyModalOpener' })
-        .use(Uppy.XHRUpload, { endpoint: 'http://127.0.0.1:7001/upload' })
+        .use(Uppy.XHRUpload, { endpoint: '/upload' })
       uppy.on('success', (fileCount) => {
         console.log(`${fileCount} files uploaded`)
       })
